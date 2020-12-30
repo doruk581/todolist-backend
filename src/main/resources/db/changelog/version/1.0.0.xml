@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+  <changeSet author="doruk.su" id="16-06-2018 21:50">
+    <createSequence incrementBy="1" sequenceName="seq_todo"/>
+    <createTable tableName="TODO">
+      <column name="id" type="int8">
+        <constraints nullable="false" primaryKey="true"/>
+      </column>
+      <column name="TODO_NAME" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet author="doruk.su" id="17-06-2018 10:50">
+    <sql>
+      INSERT INTO TODO (id, TODO_NAME) VALUES(nextval('seq_todo'), 'DENEME');
+      INSERT INTO TODO (id, TODO_NAME) VALUES(nextval('seq_todo'), 'DENEME2');
+    </sql>
+  </changeSet>
+</databaseChangeLog>

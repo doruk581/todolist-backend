@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>todolist-backend</artifactId>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <groupId>org.springframework.boot</groupId>
+      </plugin>
+      <plugin>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <configuration>
+              <!-- Sets the path to the file which contains the execution data. -->
+              <destFile>${project.testresult.directory}/coverage/jacoco/jacoco.exec</destFile>
+            </configuration>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+            <id>pre-unit-tests</id>
+          </execution>
+          <!-- Ensures that the code coverage report for unit tests is created after unit tests have been run -->
+          <execution>
+            <configuration>
+              <dataFile>${project.testresult.directory}/coverage/jacoco/jacoco.exec</dataFile>
+              <outputDirectory>${project.testresult.directory}/coverage/jacoco</outputDirectory>
+            </configuration>
+            <goals>
+              <goal>report</goal>
+            </goals>
+            <id>post-unit-test</id>
+            <phase>test</phase>
+          </execution>
+        </executions>
+        <groupId>org.jacoco</groupId>
+        <version>${jacoco-maven-plugin.version}</version>
+      </plugin>
+      <plugin>
+        <artifactId>kotlin-maven-plugin</artifactId>
+        <configuration>
+          <args>
+            <arg>-Xjsr305=strict</arg>
+          </args>
+          <compilerPlugins>
+            <plugin>spring</plugin>
+          </compilerPlugins>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <artifactId>kotlin-maven-allopen</artifactId>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <version>${kotlin.version}</version>
+          </dependency>
+        </dependencies>
+        <groupId>org.jetbrains.kotlin</groupId>
+      </plugin>
+    </plugins>
+    <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
+    <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
+  </build>
+  <dependencies>
+    <dependency>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>jackson-module-kotlin</artifactId>
+      <groupId>com.fasterxml.jackson.module</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>liquibase-core</artifactId>
+      <groupId>org.liquibase</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>kotlin-stdlib-jdk8</artifactId>
+      <groupId>org.jetbrains.kotlin</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>kotlin-reflect</artifactId>
+      <groupId>org.jetbrains.kotlin</groupId>
+    </dependency>
+
+    <dependency>
+      <artifactId>h2</artifactId>
+      <groupId>com.h2database</groupId>
+      <scope>runtime</scope>
+    </dependency>
+
+    <dependency>
+      <artifactId>springfox-swagger2</artifactId>
+      <groupId>io.springfox</groupId>
+      <version>${swagger.version}</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>springfox-swagger-ui</artifactId>
+      <groupId>io.springfox</groupId>
+      <version>${swagger.version}</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.nhaarman/mockito-kotlin -->
+    <dependency>
+      <artifactId>mockito-kotlin</artifactId>
+      <groupId>com.nhaarman</groupId>
+      <scope>test</scope>
+      <version>${mockito.kotlin.version}</version>
+    </dependency>
+
+  </dependencies>
+  <description>Backend Application for todolist project</description>
+  <groupId>com.doruk</groupId>
+
+  <modelVersion>4.0.0</modelVersion>
+  <name>ToDoList-Backend</name>
+
+  <packaging>jar</packaging>
+
+  <parent>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <groupId>org.springframework.boot</groupId>
+    <relativePath/>
+    <version>2.1.0.BUILD-SNAPSHOT</version> <!-- lookup parent from repository -->
+  </parent>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>spring-snapshots</id>
+      <name>Spring Snapshots</name>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <url>https://repo.spring.io/snapshot</url>
+    </pluginRepository>
+    <pluginRepository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <url>https://repo.spring.io/milestone</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <properties>
+    <jacoco-maven-plugin.version>0.7.9</jacoco-maven-plugin.version>
+    <java.version>1.8</java.version>
+    <kotlin.version>1.2.41</kotlin.version>
+    <mockito.kotlin.version>1.5.0</mockito.kotlin.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <project.testresult.directory>${project.build.directory}/test-results</project.testresult.directory>
+
+    <sonar.jacoco.itReportPath>${project.testresult.directory}/coverage/jacoco/jacoco-it.exec
+    </sonar.jacoco.itReportPath>
+
+    <sonar.jacoco.reportPath>${project.testresult.directory}/coverage/jacoco/jacoco.exec</sonar.jacoco.reportPath>
+    <sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>
+    <swagger.version>2.8.0</swagger.version>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>spring-snapshots</id>
+      <name>Spring Snapshots</name>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <url>https://repo.spring.io/snapshot</url>
+    </repository>
+    <repository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <url>https://repo.spring.io/milestone</url>
+    </repository>
+  </repositories>
+
+  <version>1.0-SNAPSHOT</version>
+
+
+</project>
