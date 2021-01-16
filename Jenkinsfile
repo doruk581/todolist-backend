@@ -8,7 +8,7 @@ pipeline {
           }
           stage("Unit test") {
                steps {
-                    sh "./mvnw test"
+                    sh "./mvnw surefire:test"
                }
           }
      }
