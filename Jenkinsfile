@@ -3,12 +3,12 @@ pipeline {
      stages {
           stage("Compile") {
                steps {
-                    sh "./mvnw compile"
+                    sh "mvn compile"
                }
           }
           stage("Test") {
                steps {
-                    sh "./mvnw test -DargLine=-Djdk.net.URLClassPath.disableClassPathURLCheck=true"
+                    sh "mvn clean test"
                }
           }
      }

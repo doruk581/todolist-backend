@@ -15,7 +15,6 @@
         <executions>
           <execution>
             <configuration>
-              <!-- Sets the path to the file which contains the execution data. -->
               <destFile>${project.testresult.directory}/coverage/jacoco/jacoco.exec</destFile>
             </configuration>
             <goals>
@@ -23,7 +22,6 @@
             </goals>
             <id>pre-unit-tests</id>
           </execution>
-          <!-- Ensures that the code coverage report for unit tests is created after unit tests have been run -->
           <execution>
             <configuration>
               <dataFile>${project.testresult.directory}/coverage/jacoco/jacoco.exec</dataFile>
@@ -62,6 +60,8 @@
     <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
     <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
   </build>
+
+
   <dependencies>
     <dependency>
       <artifactId>spring-boot-starter-actuator</artifactId>
@@ -91,40 +91,35 @@
       <artifactId>kotlin-reflect</artifactId>
       <groupId>org.jetbrains.kotlin</groupId>
     </dependency>
-
     <dependency>
       <artifactId>h2</artifactId>
       <groupId>com.h2database</groupId>
       <scope>runtime</scope>
     </dependency>
-
     <dependency>
       <artifactId>springfox-swagger2</artifactId>
       <groupId>io.springfox</groupId>
       <version>${swagger.version}</version>
     </dependency>
-
     <dependency>
       <artifactId>springfox-swagger-ui</artifactId>
       <groupId>io.springfox</groupId>
       <version>${swagger.version}</version>
     </dependency>
-
     <dependency>
       <artifactId>spring-boot-starter-test</artifactId>
       <groupId>org.springframework.boot</groupId>
       <scope>test</scope>
     </dependency>
-
-    <!-- https://mvnrepository.com/artifact/com.nhaarman/mockito-kotlin -->
     <dependency>
       <artifactId>mockito-kotlin</artifactId>
       <groupId>com.nhaarman</groupId>
       <scope>test</scope>
       <version>${mockito.kotlin.version}</version>
     </dependency>
-
   </dependencies>
+
+
   <description>Backend Application for todolist project</description>
   <groupId>com.doruk</groupId>
 
