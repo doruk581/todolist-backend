@@ -11,5 +11,14 @@ pipeline {
                     sh "./mvnw clean test"
                }
           }
+          stage("Code coverage") {
+               steps {
+                    publishHTML (target: [
+                         reportDir: 'test-results/coverage/jacoco',
+                         reportFiles: 'index.html',
+                         reportName: "JaCoCo Report"
+                    ])
+               }
+          }
      }
 }
