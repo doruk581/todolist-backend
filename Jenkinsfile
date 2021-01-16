@@ -8,7 +8,7 @@ pipeline {
           }
           stage("Test") {
                steps {
-                    sh "./mvnw clean test -DargLine=-Djdk.net.URLClassPath.disableClassPathURLCheck=true"
+                    sh "./mvnw test -DargLine=-Djdk.net.URLClassPath.disableClassPathURLCheck=true"
                }
           }
      }
