@@ -6,9 +6,9 @@ pipeline {
                     sh "./mvnw compile"
                }
           }
-          stage("Unit test") {
+          stage("Test") {
                steps {
-                    sh "./mvnw surefire:test"
+                    sh "./mvnw  -DargLine="-Djdk.net.URLClassPath.disableClassPathURLCheck=true"
                }
           }
      }
