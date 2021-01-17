@@ -6,6 +6,7 @@ import org.springframework.boot.runApplication
 @SpringBootApplication
 class Application
 
+/*Test jenkins hook*/
 object KotlinMain {
     @JvmStatic
     fun main(args: Array<String>) {
