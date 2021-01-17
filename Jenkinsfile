@@ -14,7 +14,7 @@ pipeline {
           stage("Code coverage") {
                steps {
                     publishHTML (target: [
-                         reportDir: 'test-results/coverage/jacoco',
+                         reportDir: 'target/test-results/coverage/jacoco',
                          reportFiles: 'index.html',
                          reportName: "JaCoCo Report"
                     ])
