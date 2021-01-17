@@ -20,5 +20,11 @@ pipeline {
                     ])
                }
           }
+          stage("Dockerize") {
+               steps {
+                    sh "./mvnw package"
+                    sh "docker build -t doruk15191/todo-backend-app ."
+               }
+          }
      }
 }
