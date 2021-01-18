@@ -24,6 +24,8 @@ pipeline {
                steps {
                     sh "./mvnw package"
                     sh "docker build -t todo-backend-app ."
+                    sh "docker tag todo-backend-app 167.99.250.62/todo-backend-app"
+                    sh "docker push 167.99.250.62/todo-backend-app"
                }
           }
      }
