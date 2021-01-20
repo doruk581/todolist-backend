@@ -35,7 +35,7 @@ pipeline {
                             try {
                             sh "docker container stop todo-backend-app"
                             sh "docker container rm -f todo-backend-app"
-                            }finally {
+                            }catch(err) {
                             sh "docker container run -d -p 4567:4567 --name todo-backend-app 167.71.61.101:5000/todo-backend-app"
                             }
                          }
