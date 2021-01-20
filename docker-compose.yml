@@ -6,3 +6,9 @@ services:
     image: 167.71.61.101:5000/todo-backend-app
     ports:
       - "8881:8080"
+deploy:
+  placement:
+    constraints:
+      - node.role == worker
+  restart_policy:
+    condition: on-failure
