@@ -17,11 +17,13 @@ class TodoController(var todoService: TodoService) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @CrossOrigin
     fun saveTodo(@RequestBody todo: Todo): Todo {
         return todoService.saveTodo(todo)
     }
 
     @DeleteMapping("{id}")
+    @CrossOrigin
     fun deleteById(@PathVariable(value = "id") id: Long) {
         todoService.deleteById(id)
     }
