@@ -29,12 +29,9 @@ pipeline {
                }
           }
 
-          stage("Deploy to Docker Swarm") {
+          stage("Deploy") {
                          steps {
-                              sh "./mvnw package"
-                              sh "docker build -t todo-backend-app ."
-                              sh "docker tag todo-backend-app 167.71.61.101:5000/todo-backend-app"
-                              sh "docker push 167.71.61.101:5000/todo-backend-app"
+                              sh "docker container run -p 4567:4567 --name todo-backend-app 167.71.61.101:5000/todo-backend-app"
                          }
                     }
      }
